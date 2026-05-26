@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WBANK ULTRA PRO</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial;
+        }
+
+        body {
+            background: #0b0b0b;
+            color: white;
+            padding-bottom: 90px;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding: 18px;
+        }
+
+        .header h2 {
+            color: #00ff99;
+        }
+
+        /* VIEWS */
+        .view {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* CARD */
+        .card {
+            background: #1a1a1a;
+            margin: 15px;
+            padding: 18px;
+            border-radius: 14px;
+        }
+
+        /* BALANCE */
+        .balance {
+            font-size: 34px;
+            color: #00ff99;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* FLOAT BUTTON */
+        .fab {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #00ff99;
+            color: black;
+            font-size: 30px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 255, 153, 0.4);
+        }
+
+        /* MODAL */
+        .modal {
+            position: fixed;
+            bottom: 0px;
+            left: 0;
+            width: 100%;
+            background: #141414;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: 0.3s;
+            z-index: 2;
+        }
+
+        .modal.active {
+            transform: translateY(0);
+        }
+
+        .modal button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .depositBtn {
+            background: #00ff99;
+            color: black;
+        }
+
+        .withdrawBtn {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        /* INPUT */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* NAV */
+        .navbar {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            background: #121212;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #333;
+        }
+
+        .navbar button {
+            background: none;
+            color: white;
+            font-size: 12px;
+            opacity: 0.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar button.active {
+            color: #00ff99;
+            opacity: 1;
+        }
+
+        .home-btn {
+            transform: translateY(-12px);
+            background: #00ff99;
+            color: black;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+        }
+
+        /* LIST */
+        ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        li {
+            background: #222;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 10px;
+        }
+
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+            position: relative;
+        }
+
+        .loading::after {
+            content: "Processing...";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            color: #00ff99;
+        }
+
+        .successBox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .successBox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .successContent {
+            text-align: center;
+        }
+
+        /* CHECK ANIMATION */
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #00ff99;
+            position: relative;
+            margin: auto;
+            animation: pop 0.4s ease;
+        }
+
+        .checkmark::after {
+            content: "";
+            position: absolute;
+            left: 22px;
+            top: 40px;
+            width: 25px;
+            height: 12px;
+            border-left: 3px solid #00ff99;
+            border-bottom: 3px solid #00ff99;
+            transform: rotate(-45deg);
+            animation: draw 0.4s 0.2s forwards;
+            opacity: 0;
+        }
+
+        @keyframes draw {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        #successText {
+            margin-top: 12px;
+            color: #00ff99;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HOME -->
+    <div id="homeView" class="view active">
+
+        <div class="header">
+            <h2>WHITE<br>MINI_EWALLET</h2>
+        </div>
+
+        <button class="fab" onclick="toggleModal()">+</button>
+        <div class="card">
+            <h3 style="text-align:center;">Balance</h3>
+            <div class="balance" id="balance">₱0</div>
+        </div>
+    </div>
+
+    <!-- HISTORY -->
+    <div id="historyView" class="view">
+        <div class="card">
+            <h3>Transactions</h3>
+            <ul id="list"></ul>
+        </div>
+    </div>
+
+    <!-- ANALYTICS -->
+    <div id="analyticsView" class="view">
+        <div class="card">
+            <h3>Analytics</h3>
+
+            <p id="totalDeposit">Total Deposit: ₱0</p>
+            <p id="totalWithdraw">Total Withdraw: ₱0</p>
+
+            <canvas id="chart" width="300" height="180"
+                style="margin-top:15px;background:#111;border-radius:10px;"></canvas>
+        </div>
+    </div>
+
+    <!-- SEND -->
+    <div id="sendView" class="view">
+        <div class="card">
+            <h3>Send Money</h3>
+            <input id="sendEmail" placeholder="Recipient Email">
+            <input id="sendAmount" type="number" placeholder="Amount (min ₱20)">
+            <input id="pinInput" type="password" placeholder="Enter 5-digit PIN">
+            <button onclick="sendMoney()" class="depositBtn">Send</button>
+        </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="settingsView" class="view">
+        <div class="card">
+            <h3>Settings</h3>
+
+            <p id="userEmail"></p>
+
+            <input id="newEmail" placeholder="Change Email">
+            <button onclick="changeEmail()">Update Email</button>
+
+            <input id="newPass" type="password" placeholder="Change Password">
+            <button onclick="changePassword()">Update Password</button>
+
+            <input id="newPin" type="password" placeholder="Change PIN">
+            <button onclick="changePin()">Update PIN</button>
+
+            <button style="background:#ff4d4d;color:white;margin-top:10px;" onclick="logout()">
+                Logout
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+        <h3>Quick Action</h3>
+
+        <input id="amount" type="number" placeholder="Enter amount">
+
+        <button class="depositBtn" onclick="deposit()">Deposit</button>
+        <button class="withdrawBtn" onclick="withdraw()">Cashout</button>
+
+        <button onclick="toggleModal()" style="margin-top:10px;background:#333;color:white;">
+            Close
+        </button>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <button onclick="show('history')">📜History</button>
+        <button onclick="show('analytics')">📊Stats</button>
+        <button onclick="show('home')">🏠Home</button>
+        <button onclick="show('send')">💸Send</button>
+        <button onclick="show('settings')">⚙Settings</button>
+    </div>
+
+    <script>
+        let email = localStorage.getItem("currentUser");
+        let users = JSON.parse(localStorage.getItem("users")) || {};
+
+        if (!email || !users[email]) {
+            window.location.href = "index.html";
+        }
+
+        function drawGraph() {
+            let u = users[email];
+
+            let canvas = document.getElementById("chart");
+            if (!canvas) return;
+
+            let ctx = canvas.getContext("2d");
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            let data = u.transactions.slice(-10);
+
+            let points = [];
+            let balance = 0;
+
+            data.forEach(t => {
+                if (t.type === "Deposit") balance += t.amount;
+                if (t.type === "Withdraw") balance -= t.amount;
+
+                points.push(balance);
+            });
+
+            if (points.length === 0) return;
+
+            let max = Math.max(...points);
+            if (max === 0) max = 1;
+
+            ctx.beginPath();
+            ctx.strokeStyle = "#00ff99";
+            ctx.lineWidth = 2;
+            ctx.shadowColor = "#00ff99";
+            ctx.shadowBlur = 8;
+
+            points.forEach((val, i) => {
+                let x = (i / (points.length - 1)) * canvas.width;
+                let y = canvas.height - (val / max) * canvas.height;
+
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+
+            ctx.stroke();
+        }
+
+        function setLoading(state) {
+            document.body.classList.toggle("loading", state);
+        }
+
+        /* LOAD */
+        function load() {
+            // ✅ IMPORTANT: reload from localStorage
+            users = JSON.parse(localStorage.getItem("users")) || {};
+            let u = users[email];
+
+            if (!u) {
+                alert("Session error, login again");
+                logout();
+                return;
+            }
+
+            document.getElementById("userEmail").innerText = email;
+            document.getElementById("balance").innerText = "₱" + u.balance;
+
+            let list = document.getElementById("list");
+            list.innerHTML = "";
+
+            let dep = 0, wit = 0;
+
+            u.transactions.forEach(t => {
+                if (t.type === "Deposit") dep += t.amount;
+                if (t.type === "Withdraw") wit += t.amount;
+
+                let li = document.createElement("li");
+                li.innerText = `${t.type} - ₱${t.amount} (${t.date})`;
+                list.appendChild(li);
+            });
+
+            document.getElementById("totalDeposit").innerText = "Total Deposit: ₱" + dep;
+            document.getElementById("totalWithdraw").innerText = "Total Withdraw: ₱" + wit;
+
+            setTimeout(drawGraph, 100);
+        }
+
+        function save() {
+            localStorage.setItem("users", JSON.stringify(users));
+        }
+
+        /* MODAL */
+        function toggleModal() {
+            document.getElementById("modal").classList.toggle("active");
+        }
+
+        /* DEPOSIT */
+        function deposit() {
+            let amt = +amount.value;
+            if (amt <= 0) return;
+
+            setLoading(true);
+
+            setTimeout(() => {
+                users[email].balance += amt;
+
+                users[email].transactions.push({
+                    type: "Deposit",
+                    amount: amt,
+                    date: new Date().toLocaleString()
+                });
+
+                save();
+                load();
+                toggleModal();
+
+                setLoading(false);
+                showSuccess("Deposit Successful");
+            }, 1000);
+        }
+
+        /* WITHDRAW */
+        function withdraw() {
+            let amt = +amount.value;
+            if (amt <= 0) return;
+            if (amt > users[email].balance) return alert("Not enough balance");
+
+            setLoading(true);
+
+            setTimeout(() => {
+                users[email].balance -= amt;
+
+                users[email].transactions.push({
+                    type: "Withdraw",
+                    amount: amt,
+                    date: new Date().toLocaleString()
+                });
+
+                save();
+                load();
+                toggleModal();
+
+                setLoading(false);
+                showSuccess("Cashout Successful");
+            }, 1000);
+        }
+        function show(p) {
+            ["homeView", "historyView", "analyticsView", "sendView", "settingsView"]
+                .forEach(v => document.getElementById(v).classList.remove("active"));
+
+            document.getElementById(p + "View").classList.add("active");
+        }
+
+        /* SETTINGS */
+        function changeEmail() {
+            let newE = newEmail.value;
+
+            if (!newE) return alert("Enter new email");
+
+            if (users[newE]) return alert("Email already used");
+
+            users[newE] = users[email];
+            delete users[email];
+
+            email = newE;
+            localStorage.setItem("currentUser", email);
+
+            save();
+            load();
+
+            alert("Email updated!");
+        }
+
+        function changePassword() {
+            let p = newPass.value;
+
+            if (p.length < 6) return alert("Password too short");
+
+            users[email].password = p;
+            save();
+
+            alert("Password updated!");
+        }
+
+        function changePin() {
+            let p = newPin.value;
+
+            if (p.length !== 5) return alert("PIN must be 5 digits");
+
+            users[email].pin = p;
+            save();
+
+            alert("PIN updated!");
+        }
+
+        /* SEND */
+        function sendMoney() {
+            let to = sendEmail.value;
+            let amt = +sendAmount.value;
+            let pin = pinInput.value;
+
+            if (!users[to]) return alert("User not found");
+            if (amt < 20) return alert("Minimum ₱20");
+            if (amt > users[email].balance) return alert("Not enough balance");
+            if (pin !== users[email].pin) return alert("Wrong PIN");
+
+            setLoading(true);
+
+            setTimeout(() => {
+                users[email].balance -= amt;
+                users[to].balance += amt;
+
+                users[email].transactions.push({
+                    type: "Send",
+                    amount: amt,
+                    to: to,
+                    date: new Date().toLocaleString()
+                });
+
+                users[to].transactions.push({
+                    type: "Receive",
+                    amount: amt,
+                    from: email,
+                    date: new Date().toLocaleString()
+                });
+
+                save();
+                load();
+
+                setLoading(false);
+                showSuccess("Money Sent Successfully");
+            }, 1200);
+        }
+
+        /* LOGOUT */
+        function logout() {
+            localStorage.removeItem("currentUser");
+            window.location.href = "index.html";
+        }
+
+        function showSuccess(msg) {
+            let box = document.getElementById("successBox");
+            let text = document.getElementById("successText");
+
+            text.innerText = msg;
+            box.classList.add("active");
+
+            setTimeout(() => {
+                box.classList.remove("active");
+            }, 1500);
+        }
+
+        load();
+    </script>
+
+
+    <div id="successBox" class="successBox">
+        <div class="successContent">
+            <div class="checkmark"></div>
+            <p id="successText">Success</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

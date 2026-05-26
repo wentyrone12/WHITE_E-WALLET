@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WBANK Login</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #0f0f0f, #050505);
+    color: white;
+}
+
+/* LOGIN CARD */
+.container {
+    width: 100%;
+    max-width: 380px;
+    padding: 30px;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0,255,153,0.2);
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 0 25px rgba(0,255,153,0.08);
+    text-align: center;
+}
+
+/* TITLE */
+h2 {
+    color: #00ff99;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* INPUTS */
+input {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: #111;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #00ff99;
+    box-shadow: 0 0 10px rgba(0,255,153,0.3);
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #00ff99, #00cc77);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(0,255,153,0.4);
+}
+
+/* LINK */
+p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+a {
+    color: #00ff99;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* SMALL TEXT */
+.footer {
+    margin-top: 15px;
+    font-size: 12px;
+    opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <h2>WHITE<br>mini_E-WALLET</h2>
+
+        <input id="email" type="email" placeholder="Email">
+        <input id="password" type="password" placeholder="Password">
+
+        <button onclick="login()">Login</button>
+
+        <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
+
+        <div class="footer">
+            Secure Digital Banking System
+        </div>
+
+    </div>
+</div>
+
+<script src="login.js"></script>
+
+</body>
+</html>
