@@ -121,40 +121,45 @@
         /* NAV */
         .navbar {
             position: fixed;
-            bottom: 10px;
+            bottom: 0px;
             width: 100%;
-            background: #121212;
+            background: rgb(0, 0, 0);
             display: flex;
             justify-content: space-around;
             padding: 10px 0;
             border-top: 1px solid #333;
+            transition: 0.3s;
         }
 
         .navbar button {
-            background: none;
-            color: white;
-            font-size: 12px;
+            background-color: transparent;
+            border-radius: 20%;
+            padding: 5px;
+            height: 50px;
+            width: 60px;
+            font-size: 25px;
             opacity: 0.6;
             display: flex;
             flex-direction: column;
+            text-align: center;
             align-items: center;
+            transition: 0.3s;
         }
 
-        .navbar button.active {
-            color: #00ff99;
+        .navbar button a {
+            color: white;
+            position: fixed;
+            bottom: 25px;
+            transition: 0.3s;
+            scale: 1.2;
+        }
+
+        .navbar button:focus {
+            transition: 0.3s;
+            background-color: rgb(46, 44, 32);
             opacity: 1;
         }
 
-        .home-btn {
-            transform: translateY(-12px);
-            background: #00ff99;
-            color: black;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-        }
-
-        /* LIST */
         ul {
             list-style: none;
             margin-top: 10px;
@@ -174,9 +179,11 @@
         }
 
         .loading::after {
-            content: "Processing...";
+            content: "Processing.....";
             position: absolute;
-            top: 50%;
+            backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.85);
+            top: 50vh;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 14px;
@@ -191,6 +198,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.85);
             display: flex;
+            backdrop-filter: blur(4px);
             justify-content: center;
             align-items: center;
             z-index: 999;
@@ -223,7 +231,7 @@
             content: "";
             position: absolute;
             left: 22px;
-            top: 40px;
+            top: 25px;
             width: 25px;
             height: 12px;
             border-left: 3px solid #00ff99;
@@ -256,6 +264,101 @@
             color: #00ff99;
             font-size: 16px;
         }
+
+        /* 🔥 HORIZONTAL SCROLL */
+        .scroll-x-container {
+            display: flex;
+            gap: 15px;
+
+            overflow-x: auto;
+            overflow-y: hidden;
+
+            scroll-behavior: smooth;
+            padding: 15px;
+
+            width: 100%;
+        }
+
+        /* remove scrollbar */
+        .scroll-x-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* cards */
+        .scroll-card {
+            min-width: 250px;
+            height: 150px;
+
+            background: #111;
+            border: 2px solid #00ff88;
+
+            border-radius: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #00ff88;
+            font-size: 22px;
+            font-weight: bold;
+
+            flex-shrink: 0;
+
+            transition: 0.3s;
+        }
+
+        .scroll-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* 🔥 VERTICAL SCROLL */
+        .scroll-y-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            scroll-behavior: smooth;
+
+            height: 400px;
+            width: 100%;
+
+            padding: 15px;
+        }
+
+        /* remove scrollbar */
+        .scroll-y-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* cards */
+        .scroll-y-card {
+            min-height: 150px;
+            width: 100%;
+
+            background: #111;
+            border: 2px solid cyan;
+
+            border-radius: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #00ff88;
+            font-size: 22px;
+            font-weight: bold;
+
+            flex-shrink: 0;
+
+            transition: 0.3s;
+        }
+
+        .scroll-y-card:hover {
+            transform: scale(1.02);
+        }
     </style>
 </head>
 
@@ -272,6 +375,28 @@
         <div class="card">
             <h3 style="text-align:center;">Balance</h3>
             <div class="balance" id="balance">₱0</div>
+        </div>
+
+        <div class="scroll-x-container">
+
+            <div class="scroll-card">Card 1</div>
+            <div class="scroll-card">Card 2</div>
+            <div class="scroll-card">Card 3</div>
+            <div class="scroll-card">Card 4</div>
+            <div class="scroll-card">Card 5</div>
+            <div class="scroll-card">Card 6</div>
+
+        </div>
+
+        <div class="scroll-y-container">
+
+            <div class="scroll-y-card">Card 1</div>
+            <div class="scroll-y-card">Card 2</div>
+            <div class="scroll-y-card">Card 3</div>
+            <div class="scroll-y-card">Card 4</div>
+            <div class="scroll-y-card">Card 5</div>
+            <div class="scroll-y-card">Card 6</div>
+
         </div>
     </div>
 
@@ -345,11 +470,12 @@
 
     <!-- NAVBAR -->
     <div class="navbar">
-        <button onclick="show('history')">📜History</button>
-        <button onclick="show('analytics')">📊Stats</button>
-        <button onclick="show('home')">🏠Home</button>
-        <button onclick="show('send')">💸Send</button>
-        <button onclick="show('settings')">⚙Settings</button>
+        <button onclick="show('history')"><a>🗒</a></button>
+        <button onclick="show('analytics')"><a>🗠</a></button>
+        <button style="background:cyan; border-radius: 100%; scale:1.2;" : onclick="show('home')"><a
+                style="color: black; position: fixed; top: 3px;">🏠︎</a></button>
+        <button onclick="show('send')"><a>🖂</a></button>
+        <button onclick="show('settings')"><a>⚙️</a></button>
     </div>
 
     <script>
