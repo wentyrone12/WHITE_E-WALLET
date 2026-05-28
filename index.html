@@ -93,6 +93,7 @@ p {
 a {
     color: #00ff99;
     text-decoration: none;
+    cursor: pointer;
 }
 
 a:hover {
@@ -104,6 +105,38 @@ a:hover {
     margin-top: 15px;
     font-size: 12px;
     opacity: 0.6;
+}
+
+/* FORGOT PASSWORD MODAL */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-box {
+    width: 90%;
+    max-width: 350px;
+    background: #111;
+    border: 1px solid rgba(0,255,153,0.3);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(0,255,153,0.2);
+}
+
+.modal-box h3 {
+    color: #00ff99;
+    margin-bottom: 15px;
+}
+
+.close-btn {
+    background: crimson;
+    color: white;
 }
 </style>
 </head>
@@ -120,11 +153,34 @@ a:hover {
 
         <button onclick="login()">Login</button>
 
+        <p>
+            <a onclick="openForgot()">Forgot Password?</a>
+        </p>
+
         <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
 
         <div class="footer">
             Secure Digital Banking System
         </div>
+
+    </div>
+</div>
+
+<!-- FORGOT PASSWORD MODAL -->
+<div class="modal" id="forgotModal">
+    <div class="modal-box">
+
+        <h3>Forgot Password</h3>
+
+        <input type="email" id="forgotEmail" placeholder="Enter your email">
+
+        <button onclick="resetPassword()">
+            Recover Password
+        </button>
+
+        <button class="close-btn" onclick="closeForgot()">
+            Close
+        </button>
 
     </div>
 </div>

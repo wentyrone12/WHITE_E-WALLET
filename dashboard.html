@@ -42,7 +42,7 @@
         /* CARD */
         .card {
             background: #1a1a1a;
-            margin: 15px;
+            margin: 0 15px;
             padding: 18px;
             border-radius: 14px;
         }
@@ -68,6 +68,7 @@
             font-size: 30px;
             border: none;
             cursor: pointer;
+            z-index: 2;
             box-shadow: 0 0 15px rgba(0, 255, 153, 0.4);
         }
 
@@ -83,7 +84,7 @@
             padding: 20px;
             transform: translateY(100%);
             transition: 0.3s;
-            z-index: 2;
+            z-index: 3;
         }
 
         .modal.active {
@@ -241,6 +242,118 @@
             opacity: 0;
         }
 
+        /* BALANCE PREMIUM */
+        .balance {
+            font-size: 40px;
+            color: #00ff99;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(0, 255, 153, 0.5);
+        }
+
+        /* PREMIUM SETTINGS */
+        .settings-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .setting-box {
+            background: linear-gradient(145deg, #111, #1d1d1d);
+            border: 1px solid rgba(0, 255, 153, 0.15);
+            padding: 18px;
+            border-radius: 15px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .setting-box:hover {
+            transform: translateY(-3px);
+            border-color: #00ff99;
+        }
+
+        .setting-title {
+            color: #00ff99;
+            font-size: 15px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        /* IMAGE CARDS */
+        .scroll-card {
+            min-width: 270px;
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            flex-shrink: 0;
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .scroll-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            padding: 15px;
+        }
+
+        .card-overlay h4 {
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .card-overlay button {
+            width: fit-content;
+            padding: 8px 14px;
+            background: #00ff99;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* SEE MORE */
+        .moreText {
+            display: none;
+            margin-top: 10px;
+            color: #aaa;
+            font-size: 13px;
+        }
+
+        .showMore {
+            display: block;
+        }
+
+        /* ANALYTICS CARD */
+        .analytics-card {
+            background: linear-gradient(145deg, #121212, #1c1c1c);
+            padding: 18px;
+            border-radius: 18px;
+            margin-top: 15px;
+            border: 1px solid rgba(0, 255, 153, 0.15);
+        }
+
+        /* CANVAS */
+        #chart {
+            width: 100%;
+            height: 220px;
+            margin-top: 20px;
+            background: linear-gradient(145deg, #101010, #181818);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 153, 0.15);
+        }
+
         @keyframes draw {
             to {
                 opacity: 1;
@@ -257,6 +370,200 @@
                 transform: scale(1);
                 opacity: 1;
             }
+        }
+
+        /* SEND MONEY PREMIUM */
+        .send-card {
+            background:
+                linear-gradient(145deg, #101010, #1d1d1d);
+
+            border-radius: 20px;
+            padding: 20px;
+
+            border: 1px solid rgba(0, 255, 153, 0.15);
+
+            box-shadow:
+                0 0 20px rgba(0, 0, 0, 0.4);
+
+            overflow: hidden;
+            position: relative;
+        }
+
+        .send-card::before {
+            content: "";
+
+            position: absolute;
+            width: 250px;
+            height: 250px;
+
+            background: rgba(0, 255, 153, 0.08);
+
+            border-radius: 50%;
+
+            top: -120px;
+            right: -120px;
+        }
+
+        .send-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .send-avatar {
+            width: 65px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(145deg, #00ff99, #00cc77);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: black;
+            font-size: 28px;
+            font-weight: bold;
+
+            box-shadow:
+                0 0 20px rgba(0, 255, 153, 0.3);
+        }
+
+        .send-title h3 {
+            color: #00ff99;
+            margin-bottom: 5px;
+        }
+
+        .send-title p {
+            opacity: 0.6;
+            font-size: 13px;
+        }
+
+        .send-card input {
+            background: rgba(255, 255, 255, 0.04);
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            color: white;
+
+            transition: 0.3s;
+        }
+
+        .send-card input:focus {
+            border-color: #00ff99;
+
+            box-shadow:
+                0 0 15px rgba(0, 255, 153, 0.25);
+        }
+
+        .send-btn {
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 15px;
+
+            border: none;
+            border-radius: 14px;
+
+            background:
+                linear-gradient(90deg, #00ff99, #00cc77);
+
+            color: black;
+
+            font-weight: bold;
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.02);
+
+            box-shadow:
+                0 0 18px rgba(0, 255, 153, 0.35);
+        }
+
+        /* PREMIUM VERTICAL CARDS */
+        .scroll-y-card {
+            position: relative;
+
+            min-height: 220px;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            background: #111;
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            transition: 0.3s;
+        }
+
+        .scroll-y-card img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .scroll-y-overlay {
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(to top,
+                    rgba(0, 0, 0, 0.95),
+                    transparent);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+
+            padding: 18px;
+        }
+
+        .scroll-y-overlay h3 {
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .scroll-y-overlay p {
+            color: #ccc;
+            font-size: 13px;
+        }
+
+        .scroll-y-overlay button {
+            margin-top: 10px;
+
+            width: fit-content;
+
+            padding: 8px 14px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #00ff99;
+
+            color: black;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .scroll-y-card:hover {
+            transform: scale(1.02);
+
+            box-shadow:
+                0 0 25px rgba(0, 255, 153, 0.15);
         }
 
         #successText {
@@ -359,6 +666,54 @@
         .scroll-y-card:hover {
             transform: scale(1.02);
         }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            padding: 15px;
+        }
+
+        .quick-box {
+            background: #151515;
+            border: 1px solid rgba(0, 255, 153, 0.15);
+            border-radius: 18px;
+            padding: 18px 10px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .quick-box span {
+            font-size: 28px;
+        }
+
+        .quick-box p {
+            margin-top: 8px;
+            font-size: 13px;
+        }
+
+        .quick-box:hover {
+            transform: translateY(-4px);
+            border-color: #00ff99;
+            box-shadow: 0 0 18px rgba(0, 255, 153, 0.15);
+        }
+
+        .live-card {
+            margin: 15px;
+            padding: 18px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #101010, #1b1b1b);
+            border: 1px solid rgba(0, 255, 153, 0.15);
+        }
+
+        .ticker {
+            margin: 15px;
+            padding: 12px;
+            border-radius: 12px;
+            background: #111;
+            color: #00ff99;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -369,33 +724,177 @@
 
         <div class="header">
             <h2>WHITE<br>MINI_EWALLET</h2>
+            <div class="live-card">
+                <div>
+                    <h4>🔔 Latest Activity</h4>
+                    <p id="liveNotif">
+                        Welcome to WBANK ULTRA PRO
+                    </p>
+                </div>
+            </div>
         </div>
 
         <button class="fab" onclick="toggleModal()">+</button>
         <div class="card">
             <h3 style="text-align:center;">Balance</h3>
             <div class="balance" id="balance">₱0</div>
+
+            <div class="quick-actions">
+
+                <div class="quick-box" onclick="show('send')">
+                    <span>📤</span>
+                    <p>Send</p>
+                </div>
+
+                <div class="quick-box" onclick="toggleModal()">
+                    <span>💵</span>
+                    <p>Cash In</p>
+                </div>
+
+                <div class="quick-box">
+                    <span>📱</span>
+                    <p>Load</p>
+                </div>
+
+                <div class="quick-box">
+                    <span>🧾</span>
+                    <p>Bills</p>
+                </div>
+
+            </div>
+
+            <div class="ticker">
+                <marquee>
+                    BTC ▲ +2.5% • ETH ▲ +1.2% • WBANK COIN ▲ +8.4% • USD/PHP 56.20
+                </marquee>
+            </div>
         </div>
 
         <div class="scroll-x-container">
 
-            <div class="scroll-card">Card 1</div>
-            <div class="scroll-card">Card 2</div>
-            <div class="scroll-card">Card 3</div>
-            <div class="scroll-card">Card 4</div>
-            <div class="scroll-card">Card 5</div>
-            <div class="scroll-card">Card 6</div>
+            <div class="scroll-card">
+                <img src="https://picsum.photos/400/300?1">
+
+                <div class="card-overlay">
+                    <h4>WBANK Black Card</h4>
+
+                    <button onclick="toggleMore(this)">
+                        See More
+                    </button>
+
+                    <div class="moreText">
+                        Premium digital banking card with secure transactions.
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-card">
+                <img src="https://picsum.photos/400/300?2">
+
+                <div class="card-overlay">
+                    <h4>Crypto Wallet</h4>
+
+                    <button onclick="toggleMore(this)">
+                        See More
+                    </button>
+
+                    <div class="moreText">
+                        Buy, store, and manage your crypto assets securely.
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-card">
+                <img src="https://picsum.photos/400/300?3">
+
+                <div class="card-overlay">
+                    <h4>Investment Hub</h4>
+
+                    <button onclick="toggleMore(this)">
+                        See More
+                    </button>
+
+                    <div class="moreText">
+                        Grow your money with WBANK investment tools.
+                    </div>
+                </div>
+            </div>
 
         </div>
 
         <div class="scroll-y-container">
 
-            <div class="scroll-y-card">Card 1</div>
-            <div class="scroll-y-card">Card 2</div>
-            <div class="scroll-y-card">Card 3</div>
-            <div class="scroll-y-card">Card 4</div>
-            <div class="scroll-y-card">Card 5</div>
-            <div class="scroll-y-card">Card 6</div>
+            <div class="scroll-y-card">
+
+                <img src="https://picsum.photos/500/300?4">
+
+                <div class="scroll-y-overlay">
+
+                    <h3>WBANK Insurance</h3>
+
+                    <p>
+                        Protect your savings with smart digital insurance.
+                    </p>
+
+                    <button onclick="toggleMore(this)">
+                        See More
+                    </button>
+
+                    <div class="moreText">
+                        Includes financial protection and secure account recovery.
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="scroll-y-card">
+
+                <img src="https://picsum.photos/500/300?5">
+
+                <div class="scroll-y-overlay">
+
+                    <h3>Virtual Master Card</h3>
+
+                    <p>
+                        Use your virtual card for global online payments.
+                    </p>
+
+                    <button onclick="toggleMore(this)">
+                        See More
+                    </button>
+
+                    <div class="moreText">
+                        Secure online payment system with instant protection.
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="scroll-y-card">
+
+                <img src="https://picsum.photos/500/300?6">
+
+                <div class="scroll-y-overlay">
+
+                    <h3>WBANK Rewards</h3>
+
+                    <p>
+                        Earn cashback and premium rewards every transaction.
+                    </p>
+
+                    <button onclick="toggleMore(this)">
+                        See More
+                    </button>
+
+                    <div class="moreText">
+                        Get bonus cashback, vouchers, and member privileges.
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
     </div>
@@ -423,35 +922,103 @@
 
     <!-- SEND -->
     <div id="sendView" class="view">
-        <div class="card">
-            <h3>Send Money</h3>
+
+        <div class="card send-card">
+
+            <div class="send-header">
+
+                <div class="send-avatar">
+                    ₱
+                </div>
+
+                <div class="send-title">
+                    <h3>Transfer Money</h3>
+                    <p>Fast and secure digital transfer</p>
+                </div>
+
+            </div>
+
             <input id="sendEmail" placeholder="Recipient Email">
+
             <input id="sendAmount" type="number" placeholder="Amount (min ₱20)">
+
             <input id="pinInput" type="password" placeholder="Enter 5-digit PIN">
-            <button onclick="sendMoney()" class="depositBtn">Send</button>
+
+            <button onclick="sendMoney()" class="send-btn">
+
+                Send Money
+            </button>
+
         </div>
+
     </div>
 
     <!-- SETTINGS -->
     <div id="settingsView" class="view">
+
         <div class="card">
-            <h3>Settings</h3>
 
-            <p id="userEmail"></p>
+            <h3 style="color:#00ff99;text-align:center;">
+                Account Settings
+            </h3>
 
-            <input id="newEmail" placeholder="Change Email">
-            <button onclick="changeEmail()">Update Email</button>
+            <div class="settings-grid">
 
-            <input id="newPass" type="password" placeholder="Change Password">
-            <button onclick="changePassword()">Update Password</button>
+                <div class="setting-box">
+                    <div class="setting-title">
+                        Current Email
+                    </div>
 
-            <input id="newPin" type="password" placeholder="Change PIN">
-            <button onclick="changePin()">Update PIN</button>
+                    <p id="userEmail"></p>
+                </div>
 
-            <button style="background:#ff4d4d;color:white;margin-top:10px;" onclick="logout()">
-                Logout
-            </button>
+                <div class="setting-box">
+                    <div class="setting-title">
+                        Change Email
+                    </div>
+
+                    <input id="newEmail" placeholder="New Email">
+                    <button onclick="changeEmail()">
+                        Update Email
+                    </button>
+                </div>
+
+                <div class="setting-box">
+                    <div class="setting-title">
+                        Change Password
+                    </div>
+
+                    <input id="newPass" type="password" placeholder="New Password">
+                    <button onclick="changePassword()">
+                        Update Password
+                    </button>
+                </div>
+
+                <div class="setting-box">
+                    <div class="setting-title">
+                        Security PIN
+                    </div>
+
+                    <input id="newPin" type="password" placeholder="New PIN">
+                    <button onclick="changePin()">
+                        Update PIN
+                    </button>
+                </div>
+
+                <div class="setting-box">
+                    <div class="setting-title">
+                        Session
+                    </div>
+
+                    <button style="background:#ff4d4d;color:white;" onclick="logout()">
+                        Logout Account
+                    </button>
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 
     <!-- MODAL -->
@@ -487,6 +1054,7 @@
         }
 
         function drawGraph() {
+
             let u = users[email];
 
             let canvas = document.getElementById("chart");
@@ -502,6 +1070,7 @@
             let balance = 0;
 
             data.forEach(t => {
+
                 if (t.type === "Deposit") balance += t.amount;
                 if (t.type === "Withdraw") balance -= t.amount;
 
@@ -513,23 +1082,60 @@
             let max = Math.max(...points);
             if (max === 0) max = 1;
 
+            /* GRID */
+            ctx.strokeStyle = "rgba(255,255,255,0.08)";
+            ctx.lineWidth = 1;
+
+            for (let i = 0; i < 5; i++) {
+
+                let y = (canvas.height / 5) * i;
+
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+
+            /* LINE */
             ctx.beginPath();
+
             ctx.strokeStyle = "#00ff99";
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 4;
+
             ctx.shadowColor = "#00ff99";
-            ctx.shadowBlur = 8;
+            ctx.shadowBlur = 15;
 
             points.forEach((val, i) => {
-                let x = (i / (points.length - 1)) * canvas.width;
-                let y = canvas.height - (val / max) * canvas.height;
 
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
+                let x = (i / (points.length - 1)) * (canvas.width - 20) + 10;
+
+                let y = canvas.height - ((val / max) * (canvas.height - 40)) - 20;
+
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+
             });
 
             ctx.stroke();
-        }
 
+            /* DOTS */
+            points.forEach((val, i) => {
+
+                let x = (i / (points.length - 1)) * (canvas.width - 20) + 10;
+
+                let y = canvas.height - ((val / max) * (canvas.height - 40)) - 20;
+
+                ctx.beginPath();
+                ctx.fillStyle = "#00ff99";
+                ctx.arc(x, y, 5, 0, Math.PI * 2);
+                ctx.fill();
+
+            });
+
+        }
         function setLoading(state) {
             document.body.classList.toggle("loading", state);
         }
@@ -547,7 +1153,8 @@
             }
 
             document.getElementById("userEmail").innerText = email;
-            document.getElementById("balance").innerText = "₱" + u.balance;
+            document.getElementById("balance").innerText =
+                "₱" + u.balance.toLocaleString();
 
             let list = document.getElementById("list");
             list.innerHTML = "";
@@ -559,18 +1166,42 @@
                 if (t.type === "Withdraw") wit += t.amount;
 
                 let li = document.createElement("li");
-                li.innerText = `${t.type} - ₱${t.amount} (${t.date})`;
+                li.innerHTML = `
+                <b style="color:${t.type === "Deposit" ? "#00ff99" : "#ff4d4d"}">
+                ${t.type}
+                </b>
+                - ₱${t.amount}
+                <br>
+                <small>${t.date}</small>
+                `;
                 list.appendChild(li);
             });
 
-            document.getElementById("totalDeposit").innerText = "Total Deposit: ₱" + dep;
-            document.getElementById("totalWithdraw").innerText = "Total Withdraw: ₱" + wit;
+            document.getElementById("totalDeposit").innerText =
+                "Total Deposit: ₱" + dep.toLocaleString();
+
+            document.getElementById("totalWithdraw").innerText =
+                "Total Withdraw: ₱" + wit.toLocaleString();
 
             setTimeout(drawGraph, 100);
         }
 
         function save() {
             localStorage.setItem("users", JSON.stringify(users));
+        }
+
+        function toggleMore(btn) {
+
+            let text = btn.nextElementSibling;
+
+            text.classList.toggle("showMore");
+
+            if (text.classList.contains("showMore")) {
+                btn.innerText = "Hide";
+            } else {
+                btn.innerText = "See More";
+            }
+
         }
 
         /* MODAL */
@@ -733,6 +1364,25 @@
                 box.classList.remove("active");
             }, 1500);
         }
+
+        const notifications = [
+            "💸 Cashback received",
+            "🔒 Security protection enabled",
+            "⚡ Fast transfer active",
+            "🎁 Reward bonus unlocked",
+            "📈 Analytics updated",
+            "🟢 Account secured"
+        ];
+
+        setInterval(() => {
+
+            let random =
+                notifications[Math.floor(Math.random() * notifications.length)];
+
+            document.getElementById("liveNotif").innerText = random;
+
+        }, 3000);
+
 
         load();
     </script>
