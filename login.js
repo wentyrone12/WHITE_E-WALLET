@@ -255,3 +255,7 @@ function signup() {
     alert("Account created!");
     window.location.href = "index.html";
 }
+
+document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+});
