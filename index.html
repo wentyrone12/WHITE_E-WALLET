@@ -2,190 +2,264 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WBANK Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHITE_E-WALLET</title>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: radial-gradient(circle at top, #0f0f0f, #050505);
-    color: white;
-}
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at top, #0f0f0f, #050505);
+            color: white;
+        }
 
-/* LOGIN CARD */
-.container {
-    width: 100%;
-    max-width: 380px;
-    padding: 30px;
-}
+        /* LOGIN CARD */
+        .container {
+            width: 100%;
+            max-width: 380px;
+            padding: 30px;
+        }
 
-.card {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(0,255,153,0.2);
-    border-radius: 18px;
-    padding: 30px;
-    box-shadow: 0 0 25px rgba(0,255,153,0.08);
-    text-align: center;
-}
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 153, 0.2);
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 0 25px rgba(0, 255, 153, 0.08);
+            text-align: center;
+        }
 
-/* TITLE */
-h2 {
-    color: #00ff99;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-}
+        /* TITLE */
+        h2 {
+            color: #00ff99;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
 
-/* INPUTS */
-input {
-    width: 100%;
-    padding: 14px;
-    margin-top: 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: #111;
-    color: white;
-    outline: none;
-    transition: 0.3s;
-}
+        /* INPUTS */
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #111;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
 
-input:focus {
-    border-color: #00ff99;
-    box-shadow: 0 0 10px rgba(0,255,153,0.3);
-}
+        input:focus {
+            border-color: #00ff99;
+            box-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
+        }
 
-/* BUTTON */
-button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 18px;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #00ff99, #00cc77);
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
+        /* BUTTON */
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 18px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #00ff99, #00cc77);
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-button:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px rgba(0,255,153,0.4);
-}
+        button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 15px rgba(0, 255, 153, 0.4);
+        }
 
-/* LINK */
-p {
-    margin-top: 15px;
-    font-size: 14px;
-}
+        /* LINK */
+        p {
+            margin-top: 15px;
+            font-size: 14px;
+        }
 
-a {
-    color: #00ff99;
-    text-decoration: none;
-    cursor: pointer;
-}
+        a {
+            color: #00ff99;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-a:hover {
-    text-decoration: underline;
-}
+        a:hover {
+            text-decoration: underline;
+        }
 
-/* SMALL TEXT */
-.footer {
-    margin-top: 15px;
-    font-size: 12px;
-    opacity: 0.6;
-}
+        /* SMALL TEXT */
+        .footer {
+            margin-top: 15px;
+            font-size: 12px;
+            opacity: 0.6;
+        }
 
-/* FORGOT PASSWORD MODAL */
-.modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
+        /* FORGOT PASSWORD MODAL */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
 
-.modal-box {
-    width: 90%;
-    max-width: 350px;
-    background: #111;
-    border: 1px solid rgba(0,255,153,0.3);
-    border-radius: 15px;
-    padding: 25px;
-    text-align: center;
-    box-shadow: 0 0 25px rgba(0,255,153,0.2);
-}
+        .modal-box {
+            width: 90%;
+            max-width: 350px;
+            background: #111;
+            border: 1px solid rgba(0, 255, 153, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(0, 255, 153, 0.2);
+        }
 
-.modal-box h3 {
-    color: #00ff99;
-    margin-bottom: 15px;
-}
+        .modal-box h3 {
+            color: #00ff99;
+            margin-bottom: 15px;
+        }
 
-.close-btn {
-    background: crimson;
-    color: white;
-}
-</style>
+        .close-btn {
+            background: crimson;
+            color: white;
+        }
+
+        /* OTP INPUTS */
+
+        .otp-wrapper {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .otp-box {
+            width: 45px !important;
+            height: 55px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 12px;
+            background: #0f0f0f;
+            color: #00ff99;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .otp-box:focus {
+            border-color: #00ff99;
+            box-shadow: 0 0 12px rgba(0, 255, 153, 0.3);
+        }
+        .nametag{
+            position: fixed;
+            bottom: 30px;
+            font-size: 10px;
+            color: gray;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', sans-serif;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
-    <div class="card">
+    <div class="container">
+        <div class="card">
 
-        <h2>WHITE<br>mini_E-WALLET</h2>
+            <h2>WHITE<br>mini_E-WALLET</h2>
 
-        <input id="email" type="email" placeholder="Email">
-        <input id="password" type="password" placeholder="Password">
+            <input id="email" type="email" placeholder="Email">
+            <input id="password" type="password" placeholder="Password">
 
-        <button onclick="login()">Login</button>
+            <button onclick="login()">Login</button>
 
-        <p>
-            <a onclick="openForgot()">Forgot Password?</a>
-        </p>
+            <p>
+                <a onclick="openForgot()">Forgot Password?</a>
+            </p>
 
-        <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
+            <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
 
-        <div class="footer">
-            Secure Digital Banking System
+        </div>
+    </div>
+
+    <!-- FORGOT PASSWORD MODAL -->
+    <div class="modal" id="forgotModal">
+
+        <div class="modal-box">
+
+            <h3>Forgot Password</h3>
+
+            <!-- STEP 1 -->
+            <div id="stepEmail">
+
+                <input type="email" id="forgotEmail" placeholder="Enter your email">
+
+                <button onclick="sendOTP()">
+                    Recover Password
+                </button>
+
+            </div>
+
+            <!-- STEP 2 -->
+            <div id="stepOTP" style="display:none;">
+
+                <p style="margin-bottom:10px;">
+                    Enter 6-digit OTP
+                </p>
+
+                <div class="otp-wrapper">
+
+                    <input class="otp-box" maxlength="1" oninput="moveOTP(this,0)">
+                    <input class="otp-box" maxlength="1" oninput="moveOTP(this,1)">
+                    <input class="otp-box" maxlength="1" oninput="moveOTP(this,2)">
+                    <input class="otp-box" maxlength="1" oninput="moveOTP(this,3)">
+                    <input class="otp-box" maxlength="1" oninput="moveOTP(this,4)">
+                    <input class="otp-box" maxlength="1" oninput="moveOTP(this,5)">
+
+                </div>
+
+                <button onclick="verifyOTPCode()">
+                    Verify OTP
+                </button>
+
+            </div>
+
+            <!-- STEP 3 -->
+            <div id="stepNewPass" style="display:none;">
+
+                <input type="password" id="newPassword" placeholder="Enter new password">
+
+                <button onclick="saveNewPassword()">
+                    Update Password
+                </button>
+
+            </div>
+
+            <button class="close-btn" onclick="closeForgot()">
+                Close
+            </button>
+
         </div>
 
     </div>
-</div>
 
-<!-- FORGOT PASSWORD MODAL -->
-<div class="modal" id="forgotModal">
-    <div class="modal-box">
-
-        <h3>Forgot Password</h3>
-
-        <input type="email" id="forgotEmail" placeholder="Enter your email">
-
-        <button onclick="resetPassword()">
-            Recover Password
-        </button>
-
-        <button class="close-btn" onclick="closeForgot()">
-            Close
-        </button>
-
-    </div>
-</div>
-
-<script src="login.js"></script>
+    <div class="nametag">Made by Wenxyz</div>
+    <script src="login.js"></script>
 
 </body>
+
 </html>

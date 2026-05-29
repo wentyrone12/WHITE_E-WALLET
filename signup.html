@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WBANK Signup</title>
+    <title>WHITE_E-WALLET signup</title>
 
     <style>
         * {
@@ -42,7 +42,7 @@
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border: none;
+            border: 1px solid gray;
             outline: none;
             border-radius: 8px;
             background: #222;
@@ -51,6 +51,8 @@
 
         input:focus {
             border: 1px solid #00ff88;
+            box-shadow: 0 0 4px 2px #00ff88;
+            color: white;
         }
 
         button {
@@ -68,6 +70,7 @@
 
         button:hover {
             background: #00cc6a;
+            box-shadow: 0 0 4px 3px #00ff88;
         }
 
         .msg {
@@ -84,6 +87,14 @@
         .link {
             text-align: center;
             margin-top: 12px;
+        }
+
+        .nametag {
+            position: fixed;
+            bottom: 30px;
+            font-size: 10px;
+            color: gray;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', sans-serif;
         }
     </style>
 </head>
@@ -103,9 +114,11 @@
         <p class="msg" id="msg"></p>
 
         <div class="link">
-            <a href="index.html">Already have an account? Login</a>
+            Already have an account?<a href="index.html"> Login</a>
         </div>
     </div>
+
+    <div class="nametag">Made by Wenxyz</div>
 
     <script>
         function signup() {
