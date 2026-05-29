@@ -148,17 +148,18 @@
         }
 
         .navbar button a {
-            color: white;
+            background-color: transparent;
+            opacity: 0.4;
             position: fixed;
-            bottom: 25px;
+            bottom: 20px;
             transition: 0.3s;
-            scale: 1.2;
+            scale: 1.1;
         }
 
         .navbar button:focus {
             transition: 0.3s;
             background-color: rgb(46, 44, 32);
-            opacity: 1;
+            opacity: 5;
         }
 
         ul {
@@ -714,6 +715,161 @@
             color: #00ff99;
             font-weight: bold;
         }
+
+        /* PREMIUM LOAD & BILLS */
+
+        .premiumModal {
+            background: linear-gradient(145deg, #101010, #1b1b1b);
+            border-top: 1px solid rgba(0, 255, 153, 0.2);
+            padding-bottom: 30px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .service-card {
+            background: #151515;
+            border: 1px solid rgba(0, 255, 153, 0.15);
+            border-radius: 18px;
+            padding: 18px;
+            text-align: center;
+            font-size: 25px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card p {
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+            border-color: #00ff99;
+            box-shadow: 0 0 18px rgba(0, 255, 153, 0.15);
+        }
+
+        .service-card.activeService {
+            border-color: #00ff99;
+            background: rgba(0, 255, 153, 0.1);
+            box-shadow: 0 0 18px rgba(0, 255, 153, 0.2);
+        }
+
+        .premiumBtn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(90deg, #00ff99, #00cc77);
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .premiumBtn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 18px rgba(0, 255, 153, 0.25);
+        }
+
+        .closeBtn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 14px;
+            background: #222;
+            color: white;
+        }
+
+        /* PREMIUM PIN INPUT */
+
+        .pin-wrapper1 {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+
+        .pin-box1 {
+            width: 45px !important;
+            height: 40px;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #00ff99;
+            transition: 0.3s;
+        }
+
+        .pin-box1:focus {
+            border-color: #00ff99;
+            box-shadow: 0 0 15px rgba(0, 255, 153, 0.3);
+            transform: scale(1.05);
+        }
+
+        .pin-wrapper {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .pin-box {
+            width: 55px !important;
+            height: 60px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #00ff99;
+            transition: 0.3s;
+        }
+
+        .pin-box:focus {
+            border-color: #00ff99;
+            box-shadow: 0 0 15px rgba(0, 255, 153, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* LOAD NUMBER */
+
+        .phone-input {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .phone-prefix {
+            background: #00ff99;
+            color: black;
+            padding: 14px;
+            font-weight: bold;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .phone-input input {
+            margin-top: 0;
+            border: none;
+            background: transparent;
+            color: white;
+        }
     </style>
 </head>
 
@@ -726,9 +882,8 @@
             <h2>WHITE<br>MINI_EWALLET</h2>
             <div class="live-card">
                 <div>
-                    <h4>🔔 Latest Activity</h4>
                     <p id="liveNotif">
-                        Welcome to WBANK ULTRA PRO
+                        Welcome to WHITE E-WALLET
                     </p>
                 </div>
             </div>
@@ -751,12 +906,12 @@
                     <p>Cash In</p>
                 </div>
 
-                <div class="quick-box">
+                <div class="quick-box" onclick="openLoadCard()">
                     <span>📱</span>
                     <p>Load</p>
                 </div>
 
-                <div class="quick-box">
+                <div class="quick-box" onclick="openBillsCard()">
                     <span>🧾</span>
                     <p>Bills</p>
                 </div>
@@ -776,7 +931,7 @@
                 <img src="https://picsum.photos/400/300?1">
 
                 <div class="card-overlay">
-                    <h4>WBANK Black Card</h4>
+                    <h4>WHITE Black Card</h4>
 
                     <button onclick="toggleMore(this)">
                         See More
@@ -830,7 +985,7 @@
 
                 <div class="scroll-y-overlay">
 
-                    <h3>WBANK Insurance</h3>
+                    <h3>WHITE Insurance</h3>
 
                     <p>
                         Protect your savings with smart digital insurance.
@@ -878,7 +1033,7 @@
 
                 <div class="scroll-y-overlay">
 
-                    <h3>WBANK Rewards</h3>
+                    <h3>WHITE Rewards</h3>
 
                     <p>
                         Earn cashback and premium rewards every transaction.
@@ -942,7 +1097,15 @@
 
             <input id="sendAmount" type="number" placeholder="Amount (min ₱20)">
 
-            <input id="pinInput" type="password" placeholder="Enter 5-digit PIN">
+            <div class="pin-wrapper">
+
+                <input class="pin-box" maxlength="1" type="password" oninput="movePin(this,0)">
+                <input class="pin-box" maxlength="1" type="password" oninput="movePin(this,1)">
+                <input class="pin-box" maxlength="1" type="password" oninput="movePin(this,2)">
+                <input class="pin-box" maxlength="1" type="password" oninput="movePin(this,3)">
+                <input class="pin-box" maxlength="1" type="password" oninput="movePin(this,4)">
+
+            </div>
 
             <button onclick="sendMoney()" class="send-btn">
 
@@ -999,7 +1162,15 @@
                         Security PIN
                     </div>
 
-                    <input id="newPin" type="password" placeholder="New PIN">
+                    <div class="pin-wrapper1">
+
+                        <input class="pin-box1" maxlength="1" type="password" oninput="movePin(this,0)">
+                        <input class="pin-box1" maxlength="1" type="password" oninput="movePin(this,1)">
+                        <input class="pin-box1" maxlength="1" type="password" oninput="movePin(this,2)">
+                        <input class="pin-box1" maxlength="1" type="password" oninput="movePin(this,3)">
+                        <input class="pin-box1" maxlength="1" type="password" oninput="movePin(this,4)">
+
+                    </div>
                     <button onclick="changePin()">
                         Update PIN
                     </button>
@@ -1035,13 +1206,106 @@
         </button>
     </div>
 
+    <!-- LOAD MODAL -->
+    <div id="loadModal" class="modal premiumModal">
+
+        <h2 style="color:#00ff99;text-align:center;">
+            Mobile Load
+        </h2>
+
+        <div class="service-grid">
+
+            <div class="service-card" onclick="selectNetwork(this,'Smart')">
+                📶
+                <p>Smart</p>
+            </div>
+
+            <div class="service-card" onclick="selectNetwork(this,'Globe')">
+                🌐
+                <p>Globe</p>
+            </div>
+
+            <div class="service-card" onclick="selectNetwork(this,'DITO')">
+                ⚡
+                <p>DITO</p>
+            </div>
+
+        </div>
+
+        <div class="phone-input">
+
+            <div class="phone-prefix">
+                +63
+            </div>
+
+            <input id="loadNumber" maxlength="10" type="number" placeholder="9XXXXXXXXX">
+
+        </div>
+
+        <input id="loadAmount" type="number" placeholder="Enter Load Amount">
+
+        <button class="premiumBtn" onclick="buyLoad()">
+            Buy Load
+        </button>
+
+        <button class="closeBtn" onclick="closeLoadCard()">
+            Close
+        </button>
+
+    </div>
+
+    <!-- BILLS MODAL -->
+    <div id="billsModal" class="modal premiumModal">
+
+        <h2 style="color:#00ff99;text-align:center;">
+            Pay Bills
+        </h2>
+
+        <div class="service-grid">
+
+            <div class="service-card" onclick="selectBill(this,'Electric')">
+                💡
+                <p>Electric</p>
+            </div>
+
+            <div class="service-card" onclick="selectBill(this,'Water')">
+                🚰
+                <p>Water</p>
+            </div>
+
+            <div class="service-card" onclick="selectBill(this,'Internet')">
+                📡
+                <p>Internet</p>
+            </div>
+
+            <div class="service-card" onclick="selectBill(this,'Gaming')">
+                🎮
+                <p>Gaming</p>
+            </div>
+
+        </div>
+
+        <input id="billAccount" placeholder="Account Number">
+
+        <input id="billAmount" type="number" placeholder="Bill Amount">
+
+        <button class="premiumBtn" onclick="payBills()">
+            Pay Now
+        </button>
+
+        <button class="closeBtn" onclick="closeBillsCard()">
+            Close
+        </button>
+
+    </div>
+
     <!-- NAVBAR -->
     <div class="navbar">
-        <button onclick="show('history')"><a>🗒</a></button>
-        <button onclick="show('analytics')"><a>🗠</a></button>
+        <button onclick="show('history')"><a>📋</a></button>
+        <button onclick="show('analytics')"><a>📈</a></button>
         <button style="background:cyan; border-radius: 100%; scale:1.2;" : onclick="show('home')"><a
-                style="color: black; position: fixed; top: 3px;">🏠︎</a></button>
-        <button onclick="show('send')"><a>🖂</a></button>
+                style="color: black; position: fixed; top: 3px;">🏠</a></button>
+        <button onclick="show('send')"><a>✉️</a></button>
         <button onclick="show('settings')"><a>⚙️</a></button>
     </div>
 
@@ -1167,13 +1431,38 @@
 
                 let li = document.createElement("li");
                 li.innerHTML = `
-                <b style="color:${t.type === "Deposit" ? "#00ff99" : "#ff4d4d"}">
-                ${t.type}
-                </b>
-                - ₱${t.amount}
-                <br>
-                <small>${t.date}</small>
-                `;
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<div>
+<b style="
+color:
+${t.type === "Deposit" ? "#00ff99" :
+                        t.type === "Withdraw" ? "#ff4d4d" :
+                            "#00ccff"};
+">
+${t.type}
+</b>
+
+<br>
+
+<small style="opacity:0.7;">
+${t.date}
+</small>
+</div>
+
+<div style="
+font-weight:bold;
+font-size:18px;
+">
+₱${t.amount}
+</div>
+
+</div>
+`;
                 list.appendChild(li);
             });
 
@@ -1312,7 +1601,7 @@
         function sendMoney() {
             let to = sendEmail.value;
             let amt = +sendAmount.value;
-            let pin = pinInput.value;
+            let pin = getPin();
 
             if (!users[to]) return alert("User not found");
             if (amt < 20) return alert("Minimum ₱20");
@@ -1363,6 +1652,212 @@
             setTimeout(() => {
                 box.classList.remove("active");
             }, 1500);
+        }
+
+        let selectedNetwork = "";
+        let selectedBill = "";
+
+        /* LOAD */
+
+        function openLoadCard() {
+            document.getElementById("loadModal")
+                .classList.add("active");
+        }
+
+        function closeLoadCard() {
+            document.getElementById("loadModal")
+                .classList.remove("active");
+        }
+
+        function selectNetwork(el, network) {
+
+            document.querySelectorAll("#loadModal .service-card")
+                .forEach(card => card.classList.remove("activeService"));
+
+            el.classList.add("activeService");
+
+            selectedNetwork = network;
+        }
+
+        function buyLoad() {
+
+            let num = document.getElementById("loadNumber").value;
+            let amt = +document.getElementById("loadAmount").value;
+
+            if (!selectedNetwork)
+                return alert("Select network");
+
+            if (num.length !== 10)
+                return alert("Invalid PH number");
+
+            let fullNumber = "+63" + num;
+
+            if (amt < 10)
+                return alert("Minimum ₱10");
+
+            if (amt > users[email].balance)
+                return alert("Not enough balance");
+
+            setLoading(true);
+
+            setTimeout(() => {
+
+                users[email].balance -= amt;
+
+                users[email].transactions.push({
+                    type: "Load",
+                    amount: amt,
+                    network: selectedNetwork,
+                    number: fullNumber,
+                    date: new Date().toLocaleString()
+                });
+
+                save();
+                load();
+
+                setLoading(false);
+
+                closeLoadCard();
+
+                showSuccess(
+                    selectedNetwork +
+                    " Load Purchased"
+                );
+
+            }, 1200);
+        }
+
+        /* BILLS */
+
+        function openBillsCard() {
+            document.getElementById("billsModal")
+                .classList.add("active");
+        }
+
+        function closeBillsCard() {
+            document.getElementById("billsModal")
+                .classList.remove("active");
+        }
+
+        function selectBill(el, bill) {
+
+            document.querySelectorAll("#billsModal .service-card")
+                .forEach(card => card.classList.remove("activeService"));
+
+            el.classList.add("activeService");
+
+            selectedBill = bill;
+        }
+
+        function payBills() {
+
+            let acc =
+                document.getElementById("billAccount").value;
+
+            let amt =
+                +document.getElementById("billAmount").value;
+
+            if (!selectedBill)
+                return alert("Select bill type");
+
+            if (!acc)
+                return alert("Enter account number");
+
+            if (amt < 50)
+                return alert("Minimum ₱50");
+
+            if (amt > users[email].balance)
+                return alert("Not enough balance");
+
+            setLoading(true);
+
+            setTimeout(() => {
+
+                users[email].balance -= amt;
+
+                users[email].transactions.push({
+                    type: "Bills",
+                    amount: amt,
+                    bill: selectedBill,
+                    account: acc,
+                    date: new Date().toLocaleString()
+                });
+
+                save();
+                load();
+
+                setLoading(false);
+
+                closeBillsCard();
+
+                showSuccess(
+                    selectedBill +
+                    " Bill Paid"
+                );
+
+            }, 1500);
+        }
+
+        /* AUTO MOVE PIN */
+
+        function movePin(el, index) {
+
+            let pins =
+                document.querySelectorAll(".pin-box");
+
+            if (el.value.length === 1) {
+
+                if (index < pins.length - 1) {
+                    pins[index + 1].focus();
+                }
+
+            }
+
+        }
+
+        /* GET FULL PIN */
+
+        function getPin() {
+
+            let pin = "";
+
+            document.querySelectorAll(".pin-box")
+                .forEach(box => {
+                    pin += box.value;
+                });
+
+            return pin;
+
+        }
+
+        function movePin(el, index) {
+
+            let pins =
+                document.querySelectorAll(".pin-box1");
+
+            if (el.value.length === 1) {
+
+                if (index < pins.length - 1) {
+                    pins[index + 1].focus();
+                }
+
+            }
+
+        }
+
+        /* GET FULL PIN */
+
+        function getPin() {
+
+            let pin = "";
+
+            document.querySelectorAll(".pin-box1")
+                .forEach(box => {
+                    pin += box.value;
+                });
+
+            return pin;
+
         }
 
         const notifications = [
