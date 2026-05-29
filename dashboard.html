@@ -1860,6 +1860,10 @@ font-size:18px;
 
         }
 
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+
         const notifications = [
             "💸 Cashback received",
             "🔒 Security protection enabled",
